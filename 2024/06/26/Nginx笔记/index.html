@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> Nginx笔记 · 博客</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Nginx笔记 - Etsuyou"><meta name="keywords"><meta name="author" content="Etsuyou"><link rel="short icon" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/favicon.ico"><link rel="stylesheet" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/bubuzou.css"><link rel="search" type="application/opensearchdescription+xml" href="https://github.com/atom.xml" title="博客"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+</head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="https://s21.ax1x.com/2024/06/25/pksdM3F.png"></a><ul id="nav_list" class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="首页" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/blog/" target="_self" data-hover="博客" class="nav-list-link">博客</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div><div id="nav_btn" class="nav-btn"><span></span><span></span><span></span></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><Index>Page</Index><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">Nginx笔记</h1><div class="post-info">2024-06-26<p id="busuanzi_container_page_pv" class="visit"><span id="busuanzi_value_page_pv"> </span><span>次访问</span></p></div><div class="post-content"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Nginx进程，一般可以看到master和worker进程</span></span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看端口占用</span></span><br><span class="line">sudo lsof -i:80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 控制Nginx，-s singal</span></span><br><span class="line">nginx -s [...这里参数看下面表格]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动nginx</span></span><br><span class="line">sudo nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看路径信息</span></span><br><span class="line"><span class="comment"># --conf-path= ... // 配置路径，和安装方式，操作系统有关</span></span><br><span class="line">nginx -V</span><br><span class="line">sudo nginx -t // 也可以看到配置路径</span><br><span class="line"></span><br><span class="line">code ...  // vscode 打开配置文件</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>nginx -s stop</code></td>
+<td align="left">快速关闭 Nginx，可能不保存相关信息，并迅速终止 web 服务。（立即停止）</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -s quit</code></td>
+<td align="left">平稳关闭 Nginx，保存相关信息，有安排的结束 web 服务。(优雅停止)</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -s reload</code></td>
+<td align="left">因改变了 Nginx 相关配置，需要<strong>重新加载配置</strong>而重载。</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -s reopen</code></td>
+<td align="left"><strong>重新打开日志文件</strong>。</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -c filename</code></td>
+<td align="left">为 Nginx 指定一个配置文件，来代替缺省的。</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -t</code></td>
+<td align="left">不运行，仅仅测试配置文件。Nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -v</code></td>
+<td align="left">显示 Nginx 的版本。</td>
+</tr>
+<tr>
+<td align="left"><code>nginx -V</code></td>
+<td align="left">显示 Nginx 的版本，编译器版本和配置参数。</td>
+</tr>
+</tbody></table>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># sites-available</span><br><span class="line">location / &#123;</span><br><span class="line">   # 默认的根路径，修改这个就可以</span><br><span class="line">   root /var/www/html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> -rfa ./etsuyou.github.io/* /var/www/site1</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在一个 80 端口的公网 IP 上部署多个静态网页，可以通过以下几种方法实现：</p>
+<h3 id="方法一：使用-Nginx-反向代理和虚拟主机"><a href="#方法一：使用-Nginx-反向代理和虚拟主机" class="headerlink" title="方法一：使用 Nginx 反向代理和虚拟主机"></a>方法一：使用 Nginx 反向代理和虚拟主机</h3><p>Nginx 是一个高性能的 HTTP 服务器和反向代理服务器，可以通过配置虚拟主机来实现多个静态网页的托管。</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li><p><strong>安装 Nginx</strong><br>在 Ubuntu 上安装 Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置虚拟主机</strong><br>在 Nginx 的配置目录中为每个静态网页创建一个配置文件。例如，假设你有两个静态网页 <code>site1</code> 和 <code>site2</code>。</p>
+<p>创建两个配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/nginx/sites-available/site1</span><br><span class="line">sudo nano /etc/nginx/sites-available/site2</span><br></pre></td></tr></table></figure>
+
+<p>配置文件内容示例：</p>
+<p><code>site1</code> 的配置文件 (<code>/etc/nginx/sites-available/site1</code>)：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> site1.example.com;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span> /var/www/site1;</span><br><span class="line">        <span class="attribute">index</span> index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>参考</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">   <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">   <span class="attribute">server_name</span> interview.pages.etsuyou.cn;</span><br><span class="line"></span><br><span class="line">   <span class="section">location</span> / &#123;</span><br><span class="line">      <span class="attribute">root</span> /var/www/interview;</span><br><span class="line">      <span class="attribute">index</span> index.html;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建符号链接</strong><br>将这些配置文件的符号链接放到 <code>sites-enabled</code> 目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /etc/nginx/sites-available/site1 /etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>创建网页目录并放置静态文件</strong><br>创建静态网页的目录并放置你的 HTML 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /var/www/site1</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /var/www/site2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将你的静态网页文件放到相应的目录中</span></span><br><span class="line">sudo <span class="built_in">cp</span> /path/to/your/site1/* /var/www/site1/</span><br><span class="line">sudo <span class="built_in">cp</span> /path/to/your/site2/* /var/www/site2/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>检查 Nginx 配置并重启服务</strong><br>检查 Nginx 配置是否正确：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>如果配置正确，重启 Nginx 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置 DNS</strong><br>确保你的域名 <code>site1.example.com</code> 和 <code>site2.example.com</code> 都指向你的公网 IP 地址。</p>
+</li>
+</ol>
+<h3 id="方法二：使用子目录"><a href="#方法二：使用子目录" class="headerlink" title="方法二：使用子目录"></a>方法二：使用子目录</h3><p>如果不想使用域名，可以通过子目录来区分不同的静态网页。</p>
+<h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li><p><strong>配置 Nginx</strong><br>编辑默认的 Nginx 配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
+
+<p>添加子目录配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> your_public_ip;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /site1/ &#123;</span><br><span class="line">        <span class="attribute">alias</span> /var/www/site1/;</span><br><span class="line">        <span class="attribute">index</span> index.html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /site2/ &#123;</span><br><span class="line">        <span class="attribute">alias</span> /var/www/site2/;</span><br><span class="line">        <span class="attribute">index</span> index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建网页目录并放置静态文件</strong><br>创建静态网页的目录并放置你的 HTML 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /var/www/site1</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /var/www/site2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将你的静态网页文件放到相应的目录中</span></span><br><span class="line">sudo <span class="built_in">cp</span> /path/to/your/site1/* /var/www/site1/</span><br><span class="line">sudo <span class="built_in">cp</span> /path/to/your/site2/* /var/www/site2/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>检查 Nginx 配置并重启服务</strong><br>检查 Nginx 配置是否正确：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>如果配置正确，重启 Nginx 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>访问静态网页</strong><br>现在你可以通过以下 URL 访问你的静态网页：</p>
+<ul>
+<li><code>http://your_public_ip/site1/</code></li>
+<li><code>http://your_public_ip/site2/</code></li>
+</ul>
+</li>
+</ol>
+<p>通过以上方法，你可以在一个 80 端口的公网 IP 上部署多个静态网页。选择使用虚拟主机还是子目录取决于你的具体需求和域名配置。</p>
+</div></article></div><div class="right-container"><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2024/06/26/RESTful/" title="RESTful" class="next">下一篇</a></div><a href="#comment" class="comment-anchor"></a><div id="vcomments"></div><script>new Valine({
+    el: "#vcomments",
+    appId: "aD8jJBpu4oew3ovNY73z6Rdq-gzGzoHsz",
+    appKey: "FdzS5SOPHdhYQoEUngQ8K2QW",
+    notify: false,
+    verify: false,
+    avatar: "robohash",
+    visitor: true,
+    placeholder: "随便说点什么～.～",
+});</script><div class="copyright"><p>© 2024 <a target="_blank">Etsuyou</a></p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/jquery-1.8.2.min.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/articleCatalog.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
