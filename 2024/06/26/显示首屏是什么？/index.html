@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> 显示首屏是什么？ · 博客</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="显示首屏是什么？ - Etsuyou"><meta name="keywords"><meta name="author" content="Etsuyou"><link rel="short icon" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/favicon.ico"><link rel="stylesheet" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/bubuzou.css"><link rel="search" type="application/opensearchdescription+xml" href="https://github.com/atom.xml" title="博客"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+</head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="https://s21.ax1x.com/2024/06/25/pksdM3F.png"></a><ul id="nav_list" class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="首页" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/blog/" target="_self" data-hover="博客" class="nav-list-link">博客</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div><div id="nav_btn" class="nav-btn"><span></span><span></span><span></span></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><Index>Page</Index><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">显示首屏是什么？</h1><div class="post-info">2024-06-26<p id="busuanzi_container_page_pv" class="visit"><span id="busuanzi_value_page_pv"> </span><span>次访问</span></p></div><div class="post-content"><p>“显示首屏”是指在用户访问一个网页时，浏览器首先呈现给用户的内容。这通常是指页面的可见部分（即不需要滚动就能看到的部分）。首屏的加载速度对用户体验至关重要，因为它决定了用户在访问网站时的第一印象。</p>
+<span id="more"></span>
+
+<h3 id="为什么首屏重要？"><a href="#为什么首屏重要？" class="headerlink" title="为什么首屏重要？"></a>为什么首屏重要？</h3><ol>
+<li><strong>用户体验</strong>：用户更倾向于留在加载速度快的网站上。如果首屏加载时间过长，用户可能会选择离开。</li>
+<li><strong>SEO</strong>：搜索引擎（如 Google）考虑页面加载速度作为排名因素。较快的首屏加载时间有助于提升搜索引擎排名。</li>
+<li><strong>转换率</strong>：对于电商网站或其他需要用户操作的网站，较快的首屏加载时间通常会带来更高的转换率。</li>
+</ol>
+<h3 id="如何优化首屏加载时间？"><a href="#如何优化首屏加载时间？" class="headerlink" title="如何优化首屏加载时间？"></a>如何优化首屏加载时间？</h3><ol>
+<li>**服务器端渲染 (SSR)**：如前所述，使用 SSR 可以在服务器上生成 HTML 内容，从而加快首屏的显示速度。</li>
+<li><strong>代码拆分</strong>：将 JavaScript 文件按需加载，避免一次性加载所有代码。</li>
+<li><strong>懒加载</strong>：延迟加载非首屏的图片和其他资源，确保首屏内容尽快显示。</li>
+<li><strong>压缩和优化资源</strong>：压缩 CSS、JavaScript 和图片文件，减少文件大小。</li>
+<li><strong>使用 CDN</strong>：通过内容分发网络 (CDN) 提供静态资源，加快资源加载速度。</li>
+<li><strong>预加载关键资源</strong>：使用 <code>&lt;link rel=&quot;preload&quot;&gt;</code> 标签预加载关键资源，如字体和关键 CSS 文件。</li>
+</ol>
+<h3 id="具体示例"><a href="#具体示例" class="headerlink" title="具体示例"></a>具体示例</h3><p>以下是一些具体的技术和方法，用于优化首屏加载时间：</p>
+<h4 id="1-服务器端渲染-SSR"><a href="#1-服务器端渲染-SSR" class="headerlink" title="1. 服务器端渲染 (SSR)"></a>1. 服务器端渲染 (SSR)</h4><p>使用 Nuxt.js 进行服务器端渲染：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">ssr</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;server&quot;</span>,</span><br><span class="line">  <span class="comment">// 其他配置</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-代码拆分"><a href="#2-代码拆分" class="headerlink" title="2. 代码拆分"></a>2. 代码拆分</h4><p>在 Vue 项目中，可以使用动态导入来实现代码拆分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">Component</span> = (<span class="params"></span>) =&gt; <span class="keyword">import</span>(<span class="string">&quot;./Component.vue&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-懒加载图片"><a href="#3-懒加载图片" class="headerlink" title="3. 懒加载图片"></a>3. 懒加载图片</h4><p>使用 Vue 的 <code>v-lazy</code> 指令或其他懒加载库：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-lazy</span>=<span class="string">&quot;imageSrc&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Description&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-压缩资源"><a href="#4-压缩资源" class="headerlink" title="4. 压缩资源"></a>4. 压缩资源</h4><p>使用 Webpack 的插件来压缩 CSS 和 JavaScript：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">TerserPlugin</span> = <span class="built_in">require</span>(<span class="string">&quot;terser-webpack-plugin&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">optimization</span>: &#123;</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">minimizer</span>: [<span class="keyword">new</span> <span class="title class_">TerserPlugin</span>()],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-使用-CDN"><a href="#5-使用-CDN" class="headerlink" title="5. 使用 CDN"></a>5. 使用 CDN</h4><p>将静态资源托管到 CDN 上，并在 HTML 中引用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.example.com/styles.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-预加载关键资源"><a href="#6-预加载关键资源" class="headerlink" title="6. 预加载关键资源"></a>6. 预加载关键资源</h4><p>在 HTML 中使用 <code>&lt;link rel=&quot;preload&quot;&gt;</code> 标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/critical.css&quot;</span> <span class="attr">as</span>=<span class="string">&quot;style&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/critical.js&quot;</span> <span class="attr">as</span>=<span class="string">&quot;script&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过这些方法，可以显著优化首屏加载时间，提升用户体验和网站性能。</p>
+</div></article></div><div class="right-container"><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2024/06/26/Bearer_Token/" title="Bearer_Token" class="prev">上一篇</a><a href="/2024/06/25/SPA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="SPA是什么？" class="next">下一篇</a></div><a href="#comment" class="comment-anchor"></a><div id="vcomments"></div><script>new Valine({
+    el: "#vcomments",
+    appId: "aD8jJBpu4oew3ovNY73z6Rdq-gzGzoHsz",
+    appKey: "FdzS5SOPHdhYQoEUngQ8K2QW",
+    notify: false,
+    verify: false,
+    avatar: "robohash",
+    visitor: true,
+    placeholder: "随便说点什么～.～",
+});</script><div class="copyright"><p>© 2024 <a target="_blank">Etsuyou</a></p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/jquery-1.8.2.min.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/articleCatalog.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

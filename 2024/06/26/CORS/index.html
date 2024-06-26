@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="1EB8XoOl0C"><meta name="google-site-verification" content="K7thEgdLm0UfRWJ5MGdF7sCcjClSzAlxFLPv2Oz5CGM"><title> CORS · 博客</title><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="CORS - Etsuyou"><meta name="keywords"><meta name="author" content="Etsuyou"><link rel="short icon" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/favicon.ico"><link rel="stylesheet" href="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/bubuzou.css"><link rel="search" type="application/opensearchdescription+xml" href="https://github.com/atom.xml" title="博客"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="博客" type="application/atom+xml">
+</head><body><header><div class="header row"> <a href="/" class="logo-link"><img src="https://s21.ax1x.com/2024/06/25/pksdM3F.png"></a><ul id="nav_list" class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" data-hover="首页" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/blog/" target="_self" data-hover="博客" class="nav-list-link">博客</a></li></ul><div class="search"><a id="search_btn" href="#search"></a></div><div id="nav_btn" class="nav-btn"><span></span><span></span><span></span></div></div></header><div class="row scroll-con"><section class="container"><!-- for archive page--><Index>Page</Index><div id="postAr" class="post"><article class="post-block"><h1 class="post-title">CORS</h1><div class="post-info">2024-06-26<p id="busuanzi_container_page_pv" class="visit"><span id="busuanzi_value_page_pv"> </span><span>次访问</span></p></div><div class="post-content"><p>CORS（Cross-Origin Resource Sharing，跨域资源共享）是一种浏览器机制，用于允许或限制从一个域（源）向另一个域（源）发起的请求。它通过设置 HTTP 头来控制哪些跨域请求是被允许的。</p>
+<span id="more"></span>
+
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>由于安全原因，浏览器默认阻止网页发起跨域请求。CORS 是一种安全策略，允许服务器声明哪些来源可以访问其资源，从而实现跨域请求。</p>
+<h3 id="CORS-的基本概念"><a href="#CORS-的基本概念" class="headerlink" title="CORS 的基本概念"></a>CORS 的基本概念</h3><ul>
+<li><strong>Origin（源）</strong>：由协议、域名和端口组成。比如，<code>https://example.com:443</code> 是一个源。</li>
+<li><strong>Preflight Request（预检请求）</strong>：对于某些类型的跨域请求（如使用 <code>PUT</code> 或 <code>DELETE</code> 方法，或自定义的请求头），浏览器会先发送一个 <code>OPTIONS</code> 请求，以确定服务器是否允许实际请求。</li>
+</ul>
+<h3 id="CORS-的工作流程"><a href="#CORS-的工作流程" class="headerlink" title="CORS 的工作流程"></a>CORS 的工作流程</h3><ol>
+<li><strong>简单请求</strong>：如果是简单请求（如使用 <code>GET</code> 或 <code>POST</code> 方法且不包含自定义头部），浏览器直接发送请求，并在请求头中包含 <code>Origin</code> 头部。</li>
+<li><strong>预检请求</strong>：对于复杂请求，浏览器会先发送一个 <code>OPTIONS</code> 请求，包含 <code>Origin</code>、<code>Access-Control-Request-Method</code> 和 <code>Access-Control-Request-Headers</code> 头部。服务器响应后，浏览器根据响应头决定是否发送实际请求。</li>
+</ol>
+<h3 id="关键-HTTP-头"><a href="#关键-HTTP-头" class="headerlink" title="关键 HTTP 头"></a>关键 HTTP 头</h3><ul>
+<li><p><strong>请求头</strong>：</p>
+<ul>
+<li><code>Origin</code>：表示发起请求的源。</li>
+<li><code>Access-Control-Request-Method</code>：预检请求中使用，表示实际请求使用的方法。</li>
+<li><code>Access-Control-Request-Headers</code>：预检请求中使用，表示实际请求包含的自定义头部。</li>
+</ul>
+</li>
+<li><p><strong>响应头</strong>：</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code>：表示允许哪些源访问资源。可以是具体的源（如 <code>https://example.com</code>）或通配符 <code>*</code>（允许所有源）。</li>
+<li><code>Access-Control-Allow-Methods</code>：表示允许哪些 HTTP 方法（如 <code>GET</code>, <code>POST</code>, <code>PUT</code> 等）。</li>
+<li><code>Access-Control-Allow-Headers</code>：表示允许哪些自定义请求头。</li>
+<li><code>Access-Control-Allow-Credentials</code>：表示是否允许发送凭据（如 cookies）。</li>
+<li><code>Access-Control-Expose-Headers</code>：表示哪些头部可以暴露给浏览器。</li>
+<li><code>Access-Control-Max-Age</code>：表示预检请求的结果可以缓存多长时间（秒）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><p>客户端请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/api/data</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.example.com</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>https://example.com</span><br></pre></td></tr></table></figure>
+
+<p>服务器响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>https://example.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="language-json"><span class="punctuation">&#123;</span> <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;example data&quot;</span> <span class="punctuation">&#125;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h4><p>客户端预检请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">OPTIONS</span> <span class="string">/api/data</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.example.com</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>https://example.com</span><br><span class="line"><span class="attribute">Access-Control-Request-Method</span><span class="punctuation">: </span>PUT</span><br><span class="line"><span class="attribute">Access-Control-Request-Headers</span><span class="punctuation">: </span>Content-Type</span><br></pre></td></tr></table></figure>
+
+<p>服务器响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">204</span> No Content</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>https://example.com</span><br><span class="line"><span class="attribute">Access-Control-Allow-Methods</span><span class="punctuation">: </span>GET, POST, PUT</span><br><span class="line"><span class="attribute">Access-Control-Allow-Headers</span><span class="punctuation">: </span>Content-Type</span><br><span class="line"><span class="attribute">Access-Control-Max-Age</span><span class="punctuation">: </span>86400</span><br></pre></td></tr></table></figure>
+
+<p>实际请求：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PUT</span> <span class="string">/api/data</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>api.example.com</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>https://example.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="language-haxe">&#123; <span class="string">&quot;data&quot;</span>: <span class="type"></span>&quot;<span class="keyword">new</span> <span class="type">data</span>&quot; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>服务器响应：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span><span class="punctuation">: </span>https://example.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="language-haxe">&#123; <span class="string">&quot;data&quot;</span>: <span class="type"></span>&quot;<span class="keyword">new</span> <span class="type">data</span>&quot; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>CORS 是一种浏览器机制，用于控制跨域请求的安全性。通过设置适当的 HTTP 头，服务器可以声明哪些源可以访问其资源，从而实现安全的跨域资源共享。在开发 Web 应用时，理解和正确配置 CORS 对于确保应用的安全性和正确性至关重要。</p>
+</div></article></div><div class="right-container"><div class="widget"><div id="arAnchorBar"></div></div></div></section></div><div class="right-menu"></div><div class="modal search-modal"><div class="input-field"><input type="text" id="search_input"><label for="search-input">搜索</label></div><div id="search_result" class="search-result"></div></div><div class="blog-overlay"></div><footer class="row"><div class="footer-con"><div class="paginator"><a href="/2024/06/26/map_vs_object/" title="map_vs_object" class="prev">上一篇</a><a href="/2024/06/26/Bearer_Token/" title="Bearer_Token" class="next">下一篇</a></div><a href="#comment" class="comment-anchor"></a><div id="vcomments"></div><script>new Valine({
+    el: "#vcomments",
+    appId: "aD8jJBpu4oew3ovNY73z6Rdq-gzGzoHsz",
+    appKey: "FdzS5SOPHdhYQoEUngQ8K2QW",
+    notify: false,
+    verify: false,
+    avatar: "robohash",
+    visitor: true,
+    placeholder: "随便说点什么～.～",
+});</script><div class="copyright"><p>© 2024 <a target="_blank">Etsuyou</a></p></div><div class="totop"><i></i></div></div></footer><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/jquery-1.8.2.min.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/articleCatalog.js"></script><script src="https://bubuzou.oss-cn-shenzhen.aliyuncs.com/blog/202010/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
