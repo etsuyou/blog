@@ -85,7 +85,7 @@
 
   <url>
     <loc>https://etsuyou.github.io/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,28 +93,28 @@
   
   <url>
     <loc>https://etsuyou.github.io/tags/%E9%80%9F%E6%9F%A5/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://etsuyou.github.io/tags/%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://etsuyou.github.io/tags/Nginx/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://etsuyou.github.io/tags/%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -123,14 +123,14 @@
   
   <url>
     <loc>https://etsuyou.github.io/categories/blog/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://etsuyou.github.io/categories/nginx/</loc>
-    <lastmod>2024-06-26</lastmod>
+    <lastmod>2024-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
